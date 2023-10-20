@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cantidad de Pruebas</title>
+    <meta name="description" content=" Agrega la cantidad de pruebas y observa el total a pagar">
+    <link rel="shortcut icon" href="Logo-con-Fondo.png" type="image/x-icon">
+    <style>
+        /* Estilos del modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.5);
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        /* Estilos del contenido del modal */
+        .contenido-modal {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border-radius: 20px;
+            justify-content: center;
+            align-items: center;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        /* Estilos de la iamgen del modal */
+        .imagen-indicacion {
+            max-width: 100%;
+            max-height: 80vh; /* Ajusta el tamaño máximo de la imagen */
+        }
+
+       header {
+        margin: 0;
+        padding: 20px;
+        padding-left: 10%;
+            background-color: #02082c; /* Color de fondo para el header */
+            
+        }
+        body{
+            margin: 0;
+        }
+        header h1 {
+            color: #00c3d7; /* Color del texto para el h1 */
+        }
+
+        header h2 {
+            color: #13a195; /* Color del texto para el h2 */
+        }
+
+        header h3 {
+            color: #edf0ff; /* Color del texto para el h3 */
+        }
+        header a {
+            color: #00c3d7; /* Color del texto para el AQUI */
+        }
+
+        .bottom-colors {
+            margin: 0;
+            height: 15px;
+            width: 100%; /* El ancho es el 100% del contenedor */
+            background: #02b69b; /* Primer color */
+        }
+
+        .bottom-colors::before {
+            content: "";
+            background: #00bcd9; /* Segundo color */
+            height: 100%;
+            width: 25%; /* Ancho del segundo color */
+            display: inline-block;
+        }
+
+        .bottom-colors::after {
+            content: "";
+            background: #fcb934; /* Tercer color */
+            height: 100%;
+            width: 25%; /* Ancho del tercer color */
+            display: inline-block;
+        }
+
+        .bottom-colors span {
+            margin-top: 0px;
+            background: #fe004b; /* Cuarto color */ 
+            height: 100%;
+            width: 25%; /* Ancho del cuarto color */
+            display: inline-block;
+        }
+
+        main {
+            padding-left: 10%; /* Ajusta el valor según tus preferencias */
+        }
+
+        main h3 {
+            color: #7d7d7d; /* Color del texto para el h3 */
+        }
+
+        .input-style {
+            border: 1px solid #7d7d7d; /* Color del borde y grosor del borde */
+            border-radius: 10px; /* Redondez de los bordes */
+            padding: 10px; /* Espaciado interno para el contenido del input */
+            font-size: 18px;
+            width: 46%; 
+        }
+        .block {
+            display: block;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .style-number-test {
+            width: 30px; 
+            text-align: center;
+        }
+
+        .button-style:focus {
+            background-color: #3498db; /* Cambia el color cuando está enfocado */
+        }
+        .button-style-red:focus {
+            background-color: #fe004b; /* Cambia el color cuando está enfocado */
+        }
+
+        .button-style {
+            background-color: #3498db; /* Color de fondo predeterminado */
+            color: #fff; /* Color de texto */
+            border: none; /* Sin borde */
+            font-weight: bold;  
+            padding: 10px 20px; /* Espaciado interno */
+            border-radius: 5px; /* Bordes redondeados */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+
+            /* Cambio de color al pasar el mouse por encima (hover) */
+            transition: background-color 0.3s ease;
+        }
+
+        .button-style:hover {
+            background-color: #2c3e50; /* Color de fondo al pasar el mouse por encima */
+        }
+
+        .button-style:active {
+            background-color: #3498db; /* Color de fondo al presionar el botón */
+        }
+        .button-style-red {
+            background-color: #fe004b; /* Color de fondo predeterminado */
+            color: #fff; /* Color de texto */
+            border: none; /* Sin borde */
+            padding: 10px 20px; /* Espaciado interno */
+            border-radius: 5px; /* Bordes redondeados */
+            cursor: pointer; /* Cambia el cursor al pasar por encima */
+
+            /* Cambio de color al pasar el mouse por encima (hover) */
+            transition: background-color 0.3s ease;
+        }
+
+        .button-style-red:hover {
+            background-color: #850128; /* Color de fondo al pasar el mouse por encima */
+        }
+
+        .button-style-red:active {
+            background-color: #fe004b; /* Color de fondo al presionar el botón */
+        }
+
+        #pruebas-container {
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        
+        .line-black {
+            margin-top: 5px;
+            width: 48%;     
+            height: 5px;   
+            background-color: #717171; 
+        }
+
+        footer {
+            padding-left: 10%;
+            margin-bottom: 80px;
+        }
+
+        .titulo {
+            font-weight: bold;      
+            color: #717171;
+            font-size: 24px; 
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
+        .sub-titulo {
+            color: #717171;
+            font-size: 14px; 
+            margin-top: 2px;
+            margin-bottom: 2px;
+        }
+        
+    </style>
+
+</head>
+
+<body>
+    <!-- Modal -->
+    <div id="indicacion" class="modal">
+        <div class="contenido-modal">
+            <h2>Espera</h2>
+            <p>Vas a ir a otra pagina para confirmar.</p>
+            <img class="imagen-indicacion" src="indicacion.png" alt="instruciones para confirmar"/>
+        </div>
+    </div>
+    <header>
+        <h1> Formulario Dinamico </h1>
+        <h2> BTM Studio </h2>
+        <h3> esta es una muestra de un formulario dinamico <br> no puedes ver más <a href="#">AQUI</a></h3>        
+    </header>
+    <div class="bottom-colors"><span></span></div>
+  <main >
+      
+      <section>
+          <h3>Información  </h3>
+          <form id="datos-aliado">
+              <input class="input-style block" type="text" placeholder="Nombre" required>
+              <input class="input-style block" type="email" placeholder="Correo" required>
+              <input class="input-style block" type="tel" placeholder="Telefono" required>
+          </form>
+          <h3>Número de Pruebas </h3>
+          <div class="botones-numero-pruebas" >
+              <input class="input-style style-number-test" type="text" id="numero-pruebas" value="1" pattern="^[0-9]$" >
+              <button class="button-style" onclick="agregarPrueba()">✚</button>
+              <button class="button-style-red" onclick="eliminarPrueba()">▬</button>
+          </div>
+      </section>
+      <br>
+      <br>
+      <div id="pruebas-container"></div>
+
+
+  </main>
+
+  <footer>
+    <div class="line-black"> </div>
+    <br>
+    <p class="titulo" id="total">Total: $0 USD</p>
+    <p class="sub-titulo" id="cantidad-pruebas"></p>
+    <br>
+    <button class="button-style" onclick="agregarInformacion()">PAGAR</button>
+</footer>
+
+  <script> 
+    // Codigo JavaScript
+    var valorPagar=0;
+    var costoPrueba = 70;
+    var pruebaCount = 1;
+    let pruebas = [];
+
+    function agregarPrueba() {
+        const numeroPruebasInput = document.getElementById('numero-pruebas');
+        const numeroPruebas = parseInt(numeroPruebasInput.value);
+
+        if (isNaN(numeroPruebas) || numeroPruebas <= 0) {
+            alert('Ingresa un número válido de pruebas.');
+            return;
+        }
+
+        for (let i = 0; i < numeroPruebas; i++) {
+            const pruebaContainer = document.createElement('div');
+            pruebaContainer.classList.add('prueba-container');
+            pruebaContainer.innerHTML = `
+                <h2 class="titulo" >Prueba #${pruebaCount}</h2>
+                <h4 class="sub-titulo" >Persona a la que se ingresa <strong> (The Cambridge Code)</strong> </h4>
+                <h3>Información</h3>
+                <input class="input-style block" type="text" placeholder="Nombre " required>
+                <input class="input-style block" type="email" placeholder="Correo " required>
+            `;
+            document.getElementById('pruebas-container').appendChild(pruebaContainer);
+
+            pruebaCount++;
+        }
+        calcularTotal();
+    }
+
+    function eliminarPrueba() {
+       
+        const pruebasContainer = document.getElementById('pruebas-container');
+       
+        if(pruebasContainer.hasChildNodes()){
+            pruebasContainer.removeChild(pruebasContainer.lastChild); // Elimina el último contenedor
+
+            pruebas.pop(); // Elimina la última posición del arreglo
+
+            pruebaCount = pruebaCount - 1;
+            calcularTotal();
+        }
+        
+    }
+
+    function agregarInformacion() {
+        
+        const contenedores = document.querySelectorAll('.prueba-container');
+        const pruebas = [];  // Declaro un arreglo para almacenar los datos de prueba.
+        
+        if(contenedores.length == 0){
+            alert('No has agregado una prueba');
+            return;
+        }
+        contenedores.forEach((contenedor, index) => {
+            const nombreInput = contenedor.querySelector('input[placeholder="Nombre del evaluador"]');
+            const correoInput = contenedor.querySelector('input[placeholder="Correo del evaluador"]');
+            const nombre = nombreInput.value.trim();  // Elimino espacios en blanco al inicio y al final.
+            const correo = correoInput.value.trim();
+
+            if (nombre === '') {
+                alert('El campo de nombre de la persona a la que se le va a realizar la prueba no puede estar vacío.');
+                return;  
+            }
+
+            // Validar el campo de correo electrónico utilizando una expresión regular simple.
+            const correoValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correo);
+            if (!correoValido) {
+                alert('Por favor, ingrese una dirección de correo electrónico válida.');
+                return;  
+            }
+
+            // Solo si las validaciones son exitosas, se agrega la información a pruebas.
+            pruebas.push({ nombre, correo });
+        });
+
+        let nombreInput = document.querySelector('.input-style[type="text"][placeholder="Nombre"]');
+        let correoInput = document.querySelector('.input-style[type="email"][placeholder="Correo"]');
+        let telefonoInput = document.querySelector('.input-style[type="tel"][placeholder="Telefono"]');
+
+        if (nombreInput === '') {
+            alert('El campo de nombre del Aliado no puede estar vacío.');
+            return;  
+        }
+
+        const correoValidoAliado = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(correoInput.value);
+        if (!correoValidoAliado) {
+            alert('Por favor, El Aliado debe tener una dirección de correo electrónico válida.');
+            return;  
+        }
+
+        const soloNumero = /^[0-9]+$/;
+        if (telefonoInput.value === '' || !soloNumero.test(telefonoInput.value)) {
+            alert('El campo de telefono del Aliado no es valido');
+            return;  
+        }
+
+
+        const informacionPagar = {
+            'aliado-nombre': nombreInput.value,
+            'aliado-correo': correoInput.value,
+            'aliado-telf': telefonoInput.value,
+            'total-pagar': valorPagar,
+            'lista-pruebas': pruebas,
+        };
+
+        console.log(informacionPagar); // objeto con toda la informacion capturada 
+        enviarCorreo(informacionPagar);
+    }
+ 
+    function enviarCorreo(informacionPagar) {
+    console.log('enviar correo');
+    
+    // Crear el formulario y establecer sus atributos para enviar el correo electronico 
+    // el numero es el correo electronico de destino 
+    const form = document.createElement("form");
+    form.id = "miFormulario";
+    form.action = "https://formsubmit.co/eliasbest634@gmail.com";
+    form.method = "POST";
+    form.style="visibility:hidden;"
+    
+    // Agregar el formulario al cuerpo del documento
+    document.body.appendChild(form);
+    
+    // Recorrer las claves del objeto 'informacionPagar' y crear campos de entrada
+    for (const key in informacionPagar) {
+    if (informacionPagar.hasOwnProperty(key)) {
+        if (key === 'lista-pruebas') {
+            const listaPruebasInput = document.createElement('input');
+            listaPruebasInput.type = 'text';
+            listaPruebasInput.name = 'lista-pruebas';
+            listaPruebasInput.value = informacionPagar['lista-pruebas'].map((prueba) => {
+            return Object.keys(prueba).map((key) => `${key}: ${prueba[key]}`).join(' ');
+            }).join(' ');
+
+            // Agregar el campo de entrada al formulario
+            form.appendChild(listaPruebasInput);
+        }else{
+            const input = document.createElement('input');
+            input.type = 'text';
+            input.name = key;
+            input.value = informacionPagar[key];
+            input.required = true;
+    
+            // Agregar el campo de entrada al formulario
+            form.appendChild(input);
+
+        }
+    }
+}
+
+    
+    // Crear el botón de envío
+    const enviarButton = document.createElement('button');
+    enviarButton.type = 'submit';
+    enviarButton.textContent = 'Send';
+    
+    // Agregar el botón al formulario
+    form.appendChild(enviarButton);
+    
+    // Agregar un listener al formulario para manejar el envío
+    form.addEventListener('submit', function (e) {
+        e.preventDefault(); // Evita que el formulario se envíe automáticamente.
+        console.log('submit');
+        // Puedes realizar acciones adicionales aquí si es necesario antes de enviar el formulario.
+        // this.submit(); // Descomenta esta línea si deseas enviar el formulario después de realizar acciones adicionales.
+    });
+    
+    // Envía el formulario manualmente
+    form.submit(); // Puedes descomentar esta línea si deseas enviar el formulario inmediatamente después de su creación.
+    // Va a cargar otra pagina necesaria para enviar el correo electronico,
+    // Por lo tanto va a mostrar este modal hasta que cargue la siguiente pagina 
+    document.getElementById("indicacion").style.display = "flex";
+
+}
+
+    function calcularTotal() {
+        const total = (pruebaCount -1) * costoPrueba;
+        valorPagar=total;
+        document.getElementById('total').textContent = `Total: $${total} USD`;
+        document.getElementById('cantidad-pruebas').textContent = `Cantidad de Pruebas: ${pruebaCount -1}`;
+        
+
+    }
+
+</script>
+
+</body>
+
+</html>
+
